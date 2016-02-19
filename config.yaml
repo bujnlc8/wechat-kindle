@@ -1,0 +1,9 @@
+name: haihuiwechat
+version: 1
+handle:
+- compress:  if ( out_header["Content-type"] ~ "application/octet-stream" ) compress
+- compress:  if ( out_header["Content-type"] ~ "text/css" ) compress
+- compress:  if ( out_header["Content-type"] ~ "text/javascript" ) compress
+- compress:  if ( out_header["Content-type"] ~ "text/html" ) compress
+- compress:  if ( out_header["Content-type"] ~ "application/zip" ) compress
+- compress:  if ( out_header["Content-type"] ~ "application/pdf" ) compress
