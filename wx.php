@@ -82,7 +82,7 @@ LIBXML_NOCDATA);
     {
         switch ($object->Event) {
             case "subscribe":
-                $content = "感谢您关注haihuiling的电子书分享微信号!\n回复任意字符查询相关书籍，您也可以点击相关菜单获取书籍。";
+                $content = "感谢您关注haihuiling的电子书分享微信号!\n回复任意字符查询相关书籍!\n";
                 break;
             case "unsubscribe":
                 $this->deleteUser($object);

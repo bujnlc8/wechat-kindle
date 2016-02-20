@@ -99,17 +99,17 @@ if($r==""||$r5!=md5($r)){
         <div class="input-field col s12">
 			<label for="email">Email</label><input type="email" name="email" id="email"
 				onblur="checkEmail();"  class="validate"/><span id="emailTip"
-				style="font-size: 0.6em; width:  30%;">输入的邮箱将作为电子书推送邮箱~</span>
+				style="font-size: 0.6em; width:  30%;">邮箱用于接收书籍链接，非kindle邮箱~</span>
 		</div>
 		</div>
-		<div class="row">
+		<!--<div class="row">
         <div class="input-field col s12">
 			 <label for="passwd">输入密码</label><input type="password" 
 				name="passwd" id="passwd" onblur="checkPassword();" class="validate" /><span
 				id="passwordTip" style="font-size: 0.6em; width:  30%;">输入不少于6位的密码~</span>
 		</div>
 		</div>
-	 <!--<div class="row">
+	 <div class="row">
 	 <div class="input-field col s12">
 			<label for="re-password">重新输入</label><input type="password"
 				name="re-password" id="re-password"
@@ -275,13 +275,13 @@ if($("#userName").val().trim()==""){
 }
 function subForm(){
 	var valid=checkValid();
-	var pss = checkPassword();
+	//var pss = checkPassword();
 	var city =cityCheck();
 	var province = provinceCheck();
 	var email = checkEmail();
 	//var p =checkPass();
     var user = checkUserName();
-	if(valid&&pss&city&&province&&email&&user){
+	if(valid&&city&&province&&email&&user){
 	 $("#zhuceForm").submit();
     }
 }

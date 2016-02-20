@@ -17,17 +17,8 @@ while ($row = mysqli_fetch_array($result)) {
 	$userName=$row['user_name'];
  }
 }else{
-$con = getMysqlCon();
-session_start();
-$openid=$_SESSION['openid'];
-$sql ="select user_name from userinfo where user_id='".$openid."' and is_valid='1'";
-mysqli_select_db($con, "app_haihuiwechat");
-$result = mysqli_query($con, $sql);
-while ($row = mysqli_fetch_array($result)) {
-    //$to=$row['email'];
-	$userName=$row['user_name'];
- }
 	$to=$email;
+	$userName="用户";
 }
 $strArr = explode('.',$url);
 $fileName = $bookName.".".$strArr[4];
