@@ -6,7 +6,7 @@ require_once  'doTheNumToSend.php';
 session_start();
 $openid=$_SESSION['openid'];
 $num = getTheNum($openid);
-if($num=="30"){
+if($num=="20"){
 	echo "TooMany";
 	exit();
 }

@@ -19,7 +19,7 @@ $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, 
 $mail->Port = 587;                                    // TCP port to connect to
 $mail->CharSet = "utf-8";
 $mail->setFrom($email, "电子书分享微信号");
-$mail->addAddress($kindleMail, 'Mr.Mis.Kindle');     // Add a recipient        
+$mail->addAddress($kindleMail, 'Kindle');     // Add a recipient        
 $mail->addReplyTo('75124771@qq.com', 'Information');
 //$mail->addCC('haihuiling2016@qq.com');
 //$mail->addBCC('bcc@example.com');

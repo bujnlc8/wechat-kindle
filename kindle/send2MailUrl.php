@@ -10,7 +10,7 @@ session_start();
 $openid=$_SESSION['openid'];
 if(trim($email)==""||null==$email){
 $num = getTheNum($openid);
-if($num=="30"){
+if($num=="20"){
 	echo "TooMany";
 	exit();
 }

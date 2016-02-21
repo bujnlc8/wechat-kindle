@@ -10,7 +10,7 @@ session_start();
 $_SESSION['openid'] = $output->openid;
 $openid=$output->openid;
 $con = getMysqlCon();
-$sql ="select user_name,province,city,email from userinfo where user_id='".$openid."' and is_valid='1'";
+$sql ="select user_name,province,city,email,num from userinfo where user_id='".$openid."' and is_valid='1'";
 mysqli_select_db($con, "app_haihuiwechat");
 $result = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_array($result)) {
@@ -18,12 +18,14 @@ while ($row = mysqli_fetch_array($result)) {
 	$email =$row['email'];
 	$province =$row['province'];
 	$city =$row['city'];
+	$num =20-$row['num'];
 }
 if(mysqli_num_rows($result)==0){
 	$userName="";
 	$email ="";
 	$province ="";
 	$city ="";
+	$num =20;
  }
  mysqli_close($con);
  }else{
@@ -72,6 +74,12 @@ if(mysqli_num_rows($result)==0){
                 </div>
             </div>
 			<div class="weui_cells_tips">此邮箱用于接收电子书的链接或附件，非kindle邮箱！</div>
+			<div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">当日 剩余 推送 次数</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" value="<?php echo $num."次"; ?>" readonly />
+                </div>
+            </div>
 </div>
 <div class="weui_btn_area">
             <a class="weui_btn weui_btn_primary"  href="javascript:editUserInfo()" id="showTooltips">确定</a>
