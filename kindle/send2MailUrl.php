@@ -2,13 +2,19 @@
 require_once '../tool/connectMysql.php';
 require_once '../tool/sendmail.php';
 require_once '../log/log.php';
+require_once 'doTheNumToSend.php';
 $url =$_POST['url'];
 $bookName =$_POST['bookName'];
 $email =$_POST['email'];
-if(trim($email)==""){
-$con = getMysqlCon();
 session_start();
 $openid=$_SESSION['openid'];
+if(trim($email)==""||null==$email){
+$num = getTheNum($openid);
+if($num=="30"){
+	echo "TooMany";
+	exit();
+}
+$con = getMysqlCon();
 $sql ="select email,user_name from userinfo where user_id='".$openid."' and is_valid='1'";
 mysqli_select_db($con, "app_haihuiwechat");
 $result = mysqli_query($con, $sql);
@@ -33,5 +39,8 @@ $pass="301415926o198915";
 $re = sendMail($url,$fileName,$to,$email,$pass,$subject,$con);
 if($re=="y"){
 	insertBookLog($openid,$fileName,$userName."于". date("Y-m-d H:i:s", time())."成功发送《".$bookName."》到".$to);
+	if($userName!="用户"){
+		updateTheNum($openid);
+	}
 }
 echo $re;

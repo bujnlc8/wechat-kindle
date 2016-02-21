@@ -76,6 +76,11 @@ if(mysqli_num_rows($result)==0){
 <div class="weui_btn_area">
             <a class="weui_btn weui_btn_primary"  href="javascript:editUserInfo()" id="showTooltips">确定</a>
 </div>
+<?php
+  if($openid=="o7rxEuF0Ne325LNSXlqNVzSdr_vA"){
+	  echo "<div class=\"weui_btn_area\"><a class=\"weui_btn weui_btn_primary\"  href=\"javascript:resetTheNum()\" id=\"showTooltips\">重置次数</a></div>";
+  }
+?>
      <div class="weui_dialog_alert" id="dialog1" style="display: none;">
         <div class="weui_mask"></div>
         <div class="weui_dialog">
@@ -135,5 +140,18 @@ if(mysqli_num_rows($result)==0){
 	  function close3(){
           $("#dialog3").hide(); 
      }
+	 function resetTheNum(){
+		 $.ajax({
+            url:"kindle/resetTheNum.php",
+            type:"post",
+            success:function(data){
+                if(data=="y"){
+                   $("#dialog1").show();
+                }else if(data=="n"){
+                   $("#dialog2").show(); 
+                }
+            }
+        });
+	 }
     </script>
 </html>

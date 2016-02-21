@@ -19,7 +19,7 @@ if(is_mobile()){
     <div>
     <div class="card-panel teal lighten-12" style="margin:auto;margin-top:2%;width:36%">
 	<form id="loginForm" action="doLogin.php" method="post"><div>
-        用户名或邮箱:<input type="text" name="userId" id="userId" style="display: block; height: 1.5em" /></div>
+        用户名或邮箱:<input type="text" name="userId" id="userId" style="display: block; height: 1.5em;" /></div>
         密码:<input type="password" name="password" id="password"
 			style="display: block; height: 1.5em; margin-top: 0.6em;" /> 
 		<div id="tip" style="display: none;height:1.5em;"></div>

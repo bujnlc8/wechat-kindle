@@ -2,8 +2,14 @@
 require_once '../tool/sendmail.php';
 require_once '../tool/connectMysql.php';
 require_once '../log/log.php';
+require_once  'doTheNumToSend.php';
 session_start();
 $openid=$_SESSION['openid'];
+$num = getTheNum($openid);
+if($num=="30"){
+	echo "TooMany";
+	exit();
+}
 $con = getMysqlCon();
 $sql ="select kindle,mail,pass,user_name from userinfo where user_id='".$openid."' and is_valid='1'";
 mysqli_select_db($con, "app_haihuiwechat");
@@ -31,6 +37,7 @@ $fileName = $bookName.".".$strArr[4];
 $re = sendMail($url,$fileName,$kindleMail,$email,$pass,"kindle电子书",$fileName." 见附件。");
 if($re=="y"){//如果发送成功
 	insertBookLog($openid,$fileName,$userName."于". date("Y-m-d H:i:s", time())."成功推送《".$bookName."》到".$kindleMail);
+	updateTheNum($openid);
 }
 echo $re;
 

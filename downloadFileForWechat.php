@@ -122,9 +122,19 @@ if($fileType=='mobi' ||$fileType=='azw'){
         <div class="weui_mask"></div>
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
-            <div class="weui_dialog_bd">您还未添加kindle推送邮箱，请点击微信菜单【添加推送邮箱】添加！</div>
+            <div class="weui_dialog_bd">您还未添加kindle推送邮箱，请点击微信菜单【个人信息->kindle邮箱】添加！</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:close5();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+	<div class="weui_dialog_alert" id="dialog7" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
+            <div class="weui_dialog_bd">您的发送量已超出最大限额，明天继续吧！</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:close7();" class="weui_btn_dialog primary">确定</a>
             </div>
         </div>
     </div>
@@ -144,6 +154,8 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				   $("#dialog5").show(); 
 				}else if(data=="l"){
 				   $("#dialog6").show(); 
+				}else if(data=="TooMany"){
+				   $("#dialog7").show(); 
 				}
             }
         });
@@ -159,9 +171,11 @@ if($fileType=='mobi' ||$fileType=='azw'){
             success:function(data){
                 if(data=='y'){
                    $("#dialog3").show();
-                }else{
+                }else if(data=="n"){
                    $("#dialog4").show(); 
-                }
+                }else if(data=="TooMany"){
+				   $("#dialog7").show(); 
+				}
             }
         });
 		$(e).hide();
@@ -184,6 +198,9 @@ if($fileType=='mobi' ||$fileType=='azw'){
      }
 	 function close6(){
           $("#dialog6").hide(); 
+     }
+	 function close7(){
+          $("#dialog7").hide(); 
      }
 </script>
 </html>
