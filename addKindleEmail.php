@@ -98,16 +98,28 @@ if(mysqli_num_rows($result)==0){
             </div>
         </div>
     </div>
+	<div class="weui_dialog_alert" id="dialog4" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">添加结果</strong></div>
+            <div class="weui_dialog_bd">请添加以@kindle.cn结尾的邮箱！</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:close4();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
 </body>
     <script>
    function addKindleEmail(){
        if($.trim($("#openid").val())==""||$.trim($("#kindle").val())==""||$.trim($("#email").val())=="") return;
 	   var reg = /^([a-zA-Z0-9_-])+@qq.com/; 
 	   if(!reg.test($.trim($("#email").val()))){$("#dialog3").show(); $("#email").val("");return; }
+	   var reg2 = /^([a-zA-Z0-9_-])+@kindle.cn/; 
+	   if(!reg2.test($.trim($("#kindle").val()))){$("#dialog4").show(); $("#kindle").val("");return; }
         $.ajax({
             url:"kindle/doAddKindleEmail.php",
             type:"post",
-            data:{openid:$("#openid").val(),kindle:$("#kindle").val(),email:$("#email").val(),pass:$("#pass").val()},
+            data:{openid:$("#openid").val(),kindle:$.trim($("#kindle").val()),email:$.trim($("#email").val()),pass:$.trim($("#pass").val())},
             success:function(data){
                 if(data=="y"){
                    $("#dialog1").show();
@@ -125,6 +137,9 @@ if(mysqli_num_rows($result)==0){
      }
 	  function close3(){
           $("#dialog3").hide(); 
+     }
+	  function close4(){
+          $("#dialog4").hide(); 
      }
     </script>
 </html>

@@ -60,7 +60,7 @@ $fileType= $strArr[4];
 if(!strstr($url,'pan')){
 if($fileType=='mobi' ||$fileType=='azw'){
         echo "<div class=\"button_sp_area\"><a onclick=send2Kindle('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">推送至kindle</a></div>";
-		echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
+		//echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }else{
      echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }
@@ -71,7 +71,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
         <div class="weui_mask"></div>
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
-            <div class="weui_dialog_bd">推送成功，稍后推送至您的kindle!</div>
+            <div class="weui_dialog_bd">推送成功，稍后推送至您的kindle，请不要重复推送！</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:close2();" class="weui_btn_dialog primary">确定</a>
             </div>
@@ -137,6 +137,16 @@ if($fileType=='mobi' ||$fileType=='azw'){
             </div>
         </div>
     </div>
+	<div class="weui_dialog_alert" id="dialog8" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
+            <div class="weui_dialog_bd">推送失败,您添加的不是kindle推送邮箱，请点击微信菜单【个人信息->kindle邮箱】修改！</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:close8();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
 </body>
  <script>
     function send2Kindle(url,bookName,e){
@@ -155,6 +165,8 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				   $("#dialog6").show(); 
 				}else if(data=="TooMany"){
 				   $("#dialog7").show(); 
+				}else if(data=="noKindle"){
+				   $("#dialog8").show(); 
 				}
             }
         });
@@ -201,6 +213,9 @@ if($fileType=='mobi' ||$fileType=='azw'){
      }
 	 function close7(){
           $("#dialog7").hide(); 
+     }
+	  function close8(){
+          $("#dialog8").hide(); 
      }
 </script>
 </html>

@@ -26,6 +26,11 @@ while ($row = mysqli_fetch_array($result)) {
 	if($kindleMail==null){
 		echo "noEmail";
 	    exit();
+	}else{
+		if(!preg_match('/^[\w-]+(\.[\w-]+)*@kindle.cn$/',$kindleMail)){
+			echo "noKindle";
+	        exit();
+		}
 	}
 }
 $url =$_POST['url'];

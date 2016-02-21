@@ -28,7 +28,7 @@ if($result){
             while ($row = mysqli_fetch_array($result)) {
                $num =$row['restnum'];
                if($num==0){
-                   $yaoqingSql = "delete from  yaoqingCode  where code='" . $yaoqingCode . "'";
+                   $yaoqingSql = "update yaoqingCode set isvalid='0' where code='" . $yaoqingCode . "'";
                    mysqli_query($con, $yaoqingSql);
                }
             }
