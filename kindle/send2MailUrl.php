@@ -30,9 +30,9 @@ $strArr = explode('.',$url);
 $fileName = $bookName.".".$strArr[4];
 $subject ="$bookName 电子书推送";
 if(remote_filesize($url)<8380000){
-$con ="尊敬的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bookName </b>见附件。<br>&nbsp;&nbsp;&nbsp;&nbsp;祝您生活愉快！";
+$con ="亲爱的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bookName </b>见附件。<br>&nbsp;&nbsp;&nbsp;&nbsp;祝您生活愉快！";
 }else{
-$con ="尊敬的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bookName </b>的链接为: <i>$url</i>。<br>&nbsp;&nbsp;&nbsp;&nbsp;祝您生活愉快！";
+$con ="亲爱的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bookName </b>的链接为: <i>$url</i>。<br>&nbsp;&nbsp;&nbsp;&nbsp;祝您生活愉快！";
 }
 $email="haihuiling2016@qq.com";
 $pass="301415926o198915";

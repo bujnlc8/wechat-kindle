@@ -61,7 +61,7 @@ $yema = $_REQUEST['yema'];
 		</div>
 		</div>
 <?php
-$sql = "select ui.user_id,ui.user_name,ui.nickname,ui.sex,ui.province,ui.city,ui.createdate,ui.is_valid,ui.user_class from userinfo ui  where 1=1 ";
+$sql = "select ui.user_id,ui.user_name,ui.nickname,ui.sex,ui.province,ui.city,ui.createdate,ui.is_valid,ui.user_class,ui.num from userinfo ui  where 1=1 ";
 $sqlCount ="select count(*) from  userinfo  ui  where 1=1 ";
 $con = getMysqlCon();
 mysqli_select_db($con, database);
@@ -79,7 +79,7 @@ $num = mysqli_fetch_row($result2)[0];
 //$arrSize = count($arr);
 if($num>0){
     //echo "<div style='float:right;'><input type=\"button\" value=\"删除\" class=\"btn btn-default btn-sm\"  onclick='deleteUsers();' /></div>";
-    echo "<div class='table-responsive'><table class='bordered highlight' width='100%'><tr><th width=4%><input type='checkbox' id='allc' onclick='checkAll();'><label for='allc'></label></th><th  width=4%>序号</th><th width=15%>OpenID</th><th  width=12%>userID</th><th  width=12%>nickName</th><th  width=8%>性别</th><th  width=10%>城市</th><th  width=15%>创建时间</th><th  width=30%>操作</th><tr>";
+    echo "<div class='table-responsive'><table class='bordered highlight' width='100%'><tr><th width=4%><input type='checkbox' id='allc' onclick='checkAll();'><label for='allc'></label></th><th  width=4%>序号</th><th width=10%>OpenID</th><th  width=12%>userID</th><th  width=12%>nickName</th><th  width=8%>性别</th><th  width=10%>城市</th><th  width=15%>创建时间</th><th width=10%>剩余次数</th><th width=20%>操作</th><tr>";
 }else{
     echo "<div class='table-responsive'><table class='bordered highlight'><tr><td align='center'>未查询到人员！</td></tr>";
 }
@@ -92,7 +92,9 @@ while($user=mysqli_fetch_row($result)) {
 		}else{
 			echo "<td width=15%>女</td>";
 		}
-    echo "<td>$user[4]-$user[5]</td><td>$user[6]</td><td><a onclick=deleteUser('$user[0]')>删除</a>&nbsp;";
+    echo "<td>$user[4]-$user[5]</td><td>$user[6]</td>";
+	$restNum = 20 -$user[9];
+	echo "<td>$restNum</td><td><a onclick=deleteUser('$user[0]')>删除</a>&nbsp;";
 	if($user[7]=='1'){
 		echo "<a onclick=forbidUser('$user[0]')>禁用</a>&nbsp;";
 	}else if($user[7]=='0'){

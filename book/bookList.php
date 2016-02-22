@@ -107,9 +107,9 @@ $num = mysqli_fetch_row($result2)[0];
 //$arrSize = count($arr);
 if($num>0){
     // echo "<div><input type='button' value='删除'  onclick='deleteBooks();'/>";
-    echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:6%'>序号</th><th width=20%>书名</th><th width=18%>作者</th><th style='width:25%'>链接</th>";
+    echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:6%'>序号</th><th width=25%>书名</th><th width=18%>作者</th><th style='width:25%'>链接</th>";
 	if(!is_mobile()){
-		echo "<th style='width:10%'>大小</th><th style='width:20%'>操作</th></tr>";
+		echo "<th style='width:30%'>操作</th></tr>";
 	}else{
 		echo "</tr>";
 	}
@@ -124,14 +124,14 @@ while($book=mysqli_fetch_row($result)) {
 		if(!isWechat()){
 		  if(!is_mobile()){
            echo  "<td style='font-size:0.7em;color:blue;' class='url'><a href='downloadFile.php?url=$book[3]&bookName=$book[1]' >".substr($book[3],48)."</a></td>";
-		   $fileSize =remote_filesize($book[3]);
+		  /* $fileSize =remote_filesize($book[3]);
 		   if($fileSize<=1048576){
 			   $s =sprintf("%.2f",$fileSize/1024)."kB";
 			   echo "<td>$s</td>";
 		   }else{
 			   $s =sprintf("%.2f",$fileSize/(1024*1024))."MB";
 			   echo "<td>$s</td>";
-		   }
+		   }*/
 		  if(strstr($book[3],'mobi')||(strstr($book[3],'azw')&&!strstr($book[3],'azw3'))){
               echo "<td><a href=\"javascript:sendTokindle('$book[3]','$book[1]')\">推送至kindle</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:sendTomail('$book[3]','$book[1]')\">发送到邮箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteBook('$book[3]','$book[0]')\">删除</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]')\">更新</a></td></tr>";
 		  }else{

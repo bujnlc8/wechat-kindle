@@ -64,7 +64,7 @@ if(mysqli_num_rows($result)==0){
                 </div>
             </div>
 </div>
-<div class="weui_cells_tips">信息的准确性关乎到是否推送成功，我们保证不会泄漏您的个人信息！</div>
+<div class="weui_cells_tips">信息的准确性关乎到是否推送成功，保证不会泄漏您的个人信息！</div>
 <div class="weui_btn_area">
             <a class="weui_btn weui_btn_primary"  href="javascript:addKindleEmail()" id="showTooltips">确定</a>
 </div>
@@ -113,9 +113,9 @@ if(mysqli_num_rows($result)==0){
    function addKindleEmail(){
        if($.trim($("#openid").val())==""||$.trim($("#kindle").val())==""||$.trim($("#email").val())=="") return;
 	   var reg = /^([a-zA-Z0-9_-])+@qq.com/; 
-	   if(!reg.test($.trim($("#email").val()))){$("#dialog3").show(); $("#email").val("");return; }
+	   if(!reg.test($.trim($("#email").val()))){$("#dialog3").show();return; }
 	   var reg2 = /^([a-zA-Z0-9_-])+@kindle.cn/; 
-	   if(!reg2.test($.trim($("#kindle").val()))){$("#dialog4").show(); $("#kindle").val("");return; }
+	   if(!reg2.test($.trim($("#kindle").val()))){$("#dialog4").show();return; }
         $.ajax({
             url:"kindle/doAddKindleEmail.php",
             type:"post",

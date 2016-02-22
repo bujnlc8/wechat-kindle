@@ -4,6 +4,7 @@ require_once '../tool/connectMysql.php';
 require_once '../tool/is_mobile.php';
 require_once '../tool/valid.php';
 $userId = $_POST['userId'];
+$Reply = $_POST['Reply'];
 $yema =$_REQUEST['yema'];
 ?>
 <html>
@@ -54,8 +55,11 @@ $yema =$_REQUEST['yema'];
 ?> 
 <form id="logList" method="Post">
         <div class="row">
-	     <div class="input-field col s6">
+	      <div class="input-field col s3">
             <label for="logName">userName</label><input name="userId"  class="validate" id="userId" type="text" value="<?php echo $userId;?>"/>
+          </div>
+		   <div class="input-field col s3">
+            <label for="logName">Reply</label><input name="Reply"  class="validate" id="Reply" type="text" value="<?php echo $Reply;?>"/>
           </div>
             <div class="input-field col s2">  
              <a  style="width:100%;" class="waves-effect waves-light btn" id="query" title="点击查询">Q</a></div>
@@ -70,6 +74,10 @@ mysqli_select_db($con, database);
 if ($userId != "") {
     $sql .= "  and ui.user_name like '%" . addslashes($userId) . "%'";
     $sqlCount .= "  and ui.user_name like '%" . addslashes($userId) . "%'";
+}
+if ($Reply != "") {
+    $sql .= "  and ul.response like '%" . addslashes($Reply) . "%'";
+    $sqlCount .= "  and ul.response like '%" . addslashes($Reply) . "%'";
 }
 $sql.=" and  ui.user_name is not null order by ul.req_time desc ";
 $sqlCount.=" and  ui.user_name is not null ";
@@ -116,6 +124,7 @@ $(document).ready(function() {
  });
 $("#reset").click(function(){
  $("#userId").val("");
+ $("#Reply").val("");
 });
 $("#query").click(function(){
 	$("#yema").val("1");

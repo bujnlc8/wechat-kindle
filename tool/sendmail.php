@@ -21,7 +21,7 @@ $mail->CharSet = "utf-8";
 $mail->setFrom($email, "电子书分享微信号");
 $mail->addAddress($kindleMail, 'Kindle');     // Add a recipient        
 $mail->addReplyTo('75124771@qq.com', 'Information');
-//$mail->addCC('haihuiling2016@qq.com');
+//$mail->addCC('18602739340@163.com');
 //$mail->addBCC('bcc@example.com');
 $mail->addAttachment(SAE_TMP_PATH.$filename,$filename);  // Add attachments  
 //$mail->addAttachment('img/1.png', 'bug.png');    // Optional name

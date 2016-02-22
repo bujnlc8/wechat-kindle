@@ -38,9 +38,10 @@ $fileType= $strArr[4];
             <p align="left">  <?php echo trim($writer);?></p>
         </div>
     </div>
-	<div class="weui_cell">
+	<!--<div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php 
+			/*if($fileType!="pan"){
 		   $fileSize =remote_filesize($url);
 		   if($fileSize<=1048576){
 			   $s =sprintf("%.2f",$fileSize/1024)."kB";
@@ -48,12 +49,12 @@ $fileType= $strArr[4];
 		   }else{
 			   $s =sprintf("%.2f",$fileSize/(1024*1024))."MB";
 			   echo "$s";
-		   };?></p>
+			};} */?></p>
         </div>
-    </div>
+    </div>-->
     <div class="weui_cell">
         <div class="weui_cell_ft">
-            <p align="left"> <?php if($fileType=="pan"){echo "<a>".mb_substr($url,3)."</a>"; }else{echo $url;}?></p>
+            <p align="left"> <?php if($fileType=="pan"){echo "<a href='".mb_substr($url,3,-7)."'>".mb_substr($url,3)."</a>"; }else{echo $url;}?></p>
         </div>
     </div>
  <?php 

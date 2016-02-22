@@ -31,19 +31,19 @@ $fileType= $strArr[4];
             <p align="left">  <?php echo $writer;?></p>
         </div>
     </div>
-	<div class="weui_cell">
+	<!--<div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php 
-			$fileSize =remote_filesize($url);
+			/*$fileSize =remote_filesize($url);
 		    if($fileSize<=1048576){
 			   $s =sprintf("%.2f",$fileSize/1024)."kB";
 			   echo "$s";
 		   }else{
 			   $s =sprintf("%.2f",$fileSize/(1024*1024))."MB";
 			   echo "$s";
-		   };?></p>
+		   };*/?></p>
         </div>
-    </div>
+    </div>-->
     <div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left"> <?php echo $url;?></p>
