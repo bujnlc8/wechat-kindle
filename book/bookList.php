@@ -146,7 +146,8 @@ while($book=mysqli_fetch_row($result)) {
     }else{
         $strArr =explode(" ",$book[3]);
         $u =$strArr[1];
-        echo  "<td style='font-size:0.7em;color:blue;'><a href='$u' target='_blank'>";echo mb_substr($strArr[1],7,3)."...密码:$strArr[3]</a></td></tr>";
+        echo  "<td style='font-size:0.7em;color:blue;'><a href='$u' target='_blank'>";echo mb_substr($strArr[1],7,3)."...密码:$strArr[3]</a></td>";
+		echo "<td><a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]','$book[3]')\">更新</a></td></tr>";
     }
    
 }
@@ -269,7 +270,7 @@ function sendTomail(url,bookName){
             content: '../kindle/send2MailRouter.php?url='+url+"&bookName="+bookName
         });
 }
-function updateBookInfo(id,bookName,bookWriter,bookClass){
+function updateBookInfo(id,bookName,bookWriter,bookClass,bookUrl){
 	layer.open({
             type: 2,
             title: bookName+'  书籍信息编辑',
@@ -277,7 +278,7 @@ function updateBookInfo(id,bookName,bookWriter,bookClass){
             shade: false,
             maxmin: true, //开启最大化最小化按钮
             area: ['700px', '550px'],
-            content: 'bookInfoEdit.php?id='+id+"&bookName="+bookName+"&bookWriter="+bookWriter+"&bookClass="+bookClass
+            content: 'bookInfoEdit.php?id='+id+"&bookName="+bookName+"&bookWriter="+bookWriter+"&bookClass="+bookClass+"&bookUrl="+bookUrl
         });
 }
 </script>

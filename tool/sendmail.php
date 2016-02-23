@@ -37,6 +37,36 @@ if(!$mail->send()) {
     return 'y';
  }
 }
+function sendmailOfSend($to,$email,$pass,$subject,$con){
+$mail = new PHPMailer;
+$mail->setLanguage('zh', 'res/PHPMailer/language/');                            // Enable verbose debug output
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.qq.com';                // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = $email;                   // SMTP username
+$mail->Password = $pass;                  // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
+$mail->CharSet = "utf-8";
+$mail->setFrom($email, "电子书分享微信号");
+$mail->addAddress($to, 'Kindle');     // Add a recipient        
+//$mail->addReplyTo('75124771@qq.com', 'Information');
+//$mail->addCC('18602739340@163.com');
+//$mail->addBCC('bcc@example.com');
+//$mail->addAttachment(SAE_TMP_PATH.$filename,$filename);  // Add attachments  
+//$mail->addAttachment('img/1.png', 'bug.png');    // Optional name
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = $subject;
+$mail->Body    = $con;
+$mail->AltBody = $con;
+
+if(!$mail->send()) {
+    return 'n';
+} else {
+    return 'y';
+ }
+}
 function remote_filesize($url_file){ 
     $headInf = get_headers($url_file,1); 
     return $headInf['Content-Length']; 

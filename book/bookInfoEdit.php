@@ -3,6 +3,7 @@ $id=$_GET['id'];
 $bookName=$_GET['bookName'];
 $bookWriter=$_GET['bookWriter'];
 $bookClass=$_GET['bookClass'];
+$bookUrl =$_GET['bookUrl'];
 ?>
 <html>
 <head>
@@ -49,6 +50,7 @@ $bookClass=$_GET['bookClass'];
  <a class="waves-effect waves-light btn" id="sub">确定</a>
  </div>
 <input type="hidden" value="<?php echo $id;?>" id="bookId"/>
+<input type="hidden" value="<?php echo $bookUrl;?>" id="bookUrl"/>
 </form>
 </body>
 <script>
@@ -58,10 +60,11 @@ $("#sub").click(function(){
 	var writer= $("#writer").val();
 	var bookClass= $("input[name='bookClass']:checked").val();
 	var bookDesc= $("#bookDesc").val();
+	var bookUrl= $("#bookUrl").val();
     $.ajax({
 	  url:"doEditBookInfo.php",
 	  type:"post",
-	  data:{bookId:bookId,bookName:bookName,bookClass:bookClass,bookDesc:bookDesc,writer:writer},
+	  data:{bookId:bookId,bookName:bookName,bookClass:bookClass,bookDesc:bookDesc,writer:writer,bookUrl:bookUrl},
 	  success:function(data){
 		if(data=="y"){
 			layer.alert('修改成功', {

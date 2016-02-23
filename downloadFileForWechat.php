@@ -61,7 +61,7 @@ $fileType= $strArr[4];
 if(!strstr($url,'pan')){
 if($fileType=='mobi' ||$fileType=='azw'){
         echo "<div class=\"button_sp_area\"><a onclick=send2Kindle('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">推送至kindle</a></div>";
-		//echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
+		echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }else{
      echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }
@@ -148,9 +148,26 @@ if($fileType=='mobi' ||$fileType=='azw'){
             </div>
         </div>
     </div>
+	<div class="weui_dialog_alert" id="dialog9" style="display: none;">
+        <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
+            <div class="weui_dialog_bd">请不要重复发送！</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:close9();" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
 </body>
  <script>
+ var isSend2Url =false;
+ var isSend2Kindle = false;
     function send2Kindle(url,bookName,e){
+		if(isSend2Kindle){
+			$("#dialog9").show(); 
+			return;
+		}
+		isSend2Kindle =true;
         $.ajax({
             url:"kindle/send2Kindle.php",
             type:"post",
@@ -158,6 +175,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
             success:function(data){
                 if(data=="y"){
                    $("#dialog1").show();
+				   isSend2Kindle =true;
                 }else if(data=="n"){
                    $("#dialog2").show(); 
                 }else if(data=="noEmail"){
@@ -171,10 +189,15 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				}
             }
         });
-		$(e).hide();
-		setTimeout(function(){$(e).show();},5000);
+		//$(e).hide();
+		//setTimeout(function(){$(e).show();},8000);
     }
      function send2MailUrl(url,bookName,e){
+		 if(isSend2Url){
+			$("#dialog9").show(); 
+			return;
+		}
+		isSend2Url =true;
         $.ajax({
             url:"kindle/send2MailUrl.php",
             type:"post",
@@ -183,6 +206,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
             success:function(data){
                 if(data=='y'){
                    $("#dialog3").show();
+				   isSend2Url =true;
                 }else if(data=="n"){
                    $("#dialog4").show(); 
                 }else if(data=="TooMany"){
@@ -190,8 +214,8 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				}
             }
         });
-		$(e).hide();
-		setTimeout(function(){$(e).show();},5000);
+		//$(e).hide();
+		//setTimeout(function(){$(e).show();},8000);
     }
      function close1(){
           $("#dialog2").hide(); 
