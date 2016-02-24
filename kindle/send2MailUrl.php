@@ -34,8 +34,14 @@ $con ="亲爱的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bo
 }else{
 $con ="亲爱的 $userName,<br>&nbsp;&nbsp;&nbsp;&nbsp;您要的电子书 <b>$bookName </b>的链接为: <i>$url</i>。<br>&nbsp;&nbsp;&nbsp;&nbsp;祝您生活愉快！";
 }
+$r=rand(0,9);
+if($r<=4){
 $email="haihuiling2016@qq.com";
 $pass="301415926o198915";
+}else{
+$email="75124771@qq.com";
+$pass="75124771@qq.cnn";
+}
 $re = sendMail($url,$fileName,$to,$email,$pass,$subject,$con);
 if($re=="y"){
 	insertBookLog($openid,$fileName,$userName."于". date("Y-m-d H:i:s", time())."成功发送《".$bookName."》到".$to);

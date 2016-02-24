@@ -106,7 +106,7 @@ LIBXML_NOCDATA);
       if($type==0){
        $bookName = $object->Content;
       }else if($type==1){
-       $bookName = $object->Recongnition;
+       $bookName = mb_substr(($object->Recongnition),0,-1,'utf-8');
       }
        $access_token = getAccessToken();
        $json = getInfo($access_token, $object->FromUserName);

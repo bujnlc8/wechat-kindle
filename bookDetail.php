@@ -163,7 +163,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
     <div class="weui_mask_transparent"></div>
     <div class="weui_toast">
         <div class="weui_loading">
-            <!-- :) -->
+             :)
             <div class="weui_loading_leaf weui_loading_leaf_0"></div>
             <div class="weui_loading_leaf weui_loading_leaf_1"></div>
             <div class="weui_loading_leaf weui_loading_leaf_2"></div>
@@ -206,6 +206,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
                 if(data=="y"){
 				   $("#loadingToast").hide();
                    $("#toast").show();
+				   setTimeout(function(){$("#toast").hide();},4000);
 				   isSend2Kindle = true;
                 }else if(data=="n"){
                    $("#dialog2").show(); 
@@ -234,11 +235,11 @@ if($fileType=='mobi' ||$fileType=='azw'){
             url:"kindle/send2MailUrl.php",
             type:"post",
             data:{url:url,bookName:bookName},
-            async:false,
             success:function(data){
                 if(data=='y'){
                    $("#loadingToast").hide();
 				   $("#toast").show();
+				   setTimeout(function(){$("#toast").hide();},4000);
 				   isSend2Url =true;
                 }else if(data=="n"){
                    $("#dialog4").show(); 

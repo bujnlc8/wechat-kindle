@@ -14,4 +14,4 @@ handle:
 cron:
 - description: cronToResetTheNum
   url: cron/cronResetNum.php
-  schedule: "58 23 * * *"
+  schedule: "59 23 * * *"
