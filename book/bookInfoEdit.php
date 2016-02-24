@@ -22,12 +22,12 @@ $bookUrl =$_GET['bookUrl'];
  <div class="row">
 <form  class="col s12">
  <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
         <input type="text" id="bookName" name="bookName"  class="validate" value="<?php echo $bookName;?>"><label for="bookName">书名</label>
         </div>
  </div>
  <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
         <input type="text" id="writer" name="writer"  class="validate" value="<?php echo $bookWriter;?>"> <label for="writer">作者</label>
         </div>
  </div>
@@ -41,7 +41,12 @@ $bookUrl =$_GET['bookUrl'];
  <input type="radio" <?php if($bookClass=="7") echo "checked=\"checked\"";?>  name="bookClass"  value="7"    id="7"/><label for="7">历史地理</label>&nbsp;
  </div> 
  <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
+        <input type="text" id="bookUrl" name="bookUrl"  class="validate" value="<?php echo $bookUrl;?>"><label for="bookUrl">链接</label>
+        </div>
+ </div>
+ <div class="row">
+        <div class="input-field col s12">
           <textarea id="textarea1" class="materialize-textarea" name="bookDesc" id="bookDesc"></textarea>
           <label for="textarea1">简介</label>
         </div>
@@ -50,7 +55,6 @@ $bookUrl =$_GET['bookUrl'];
  <a class="waves-effect waves-light btn" id="sub">确定</a>
  </div>
 <input type="hidden" value="<?php echo $id;?>" id="bookId"/>
-<input type="hidden" value="<?php echo $bookUrl;?>" id="bookUrl"/>
 </form>
 </body>
 <script>

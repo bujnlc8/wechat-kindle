@@ -13,6 +13,7 @@ $yema = $_REQUEST['yema'];
 <head>
 <head><title>书籍列表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="page-Enter" content="revealtrans(duration=3,transition=21)">
 <meta name="viewport" content="width=device-width, initial-scale=1" />  
     <style type="text/css">
         td{font-size:0.8em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -133,9 +134,9 @@ while($book=mysqli_fetch_row($result)) {
 			   echo "<td>$s</td>";
 		   }*/
 		  if(strstr($book[3],'mobi')||(strstr($book[3],'azw')&&!strstr($book[3],'azw3'))){
-              echo "<td><a href=\"javascript:sendTokindle('$book[3]','$book[1]')\">推送至kindle</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:sendTomail('$book[3]','$book[1]')\">发送到邮箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteBook('$book[3]','$book[0]')\">删除</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]')\">更新</a></td></tr>";
+              echo "<td><a href=\"javascript:sendTokindle('$book[3]','$book[1]')\">推送至kindle</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:sendTomail('$book[3]','$book[1]')\">发送到邮箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteBook('$book[3]','$book[0]')\">删除</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]','$book[3]')\">更新</a></td></tr>";
 		  }else{
-			  echo "<td><a href=\"javascript:sendTomail('$book[3]','$book[1]')\">发送到邮箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteBook('$book[3]','$book[0]')\">删除</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]')\">更新</a></td></tr>";
+			  echo "<td><a href=\"javascript:sendTomail('$book[3]','$book[1]')\">发送到邮箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteBook('$book[3]','$book[0]')\">删除</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]','$book[3]')\">更新</a></td></tr>";
 		  }
 		 }else{
 	         echo  "<td style='font-size:0.7em;color:blue;' class='url'><a href='downloadFile.php?url=$book[3]&bookName=$book[1]' >$book[3]</a></td></tr>";  
@@ -277,7 +278,7 @@ function updateBookInfo(id,bookName,bookWriter,bookClass,bookUrl){
             shadeClose: true,
             shade: false,
             maxmin: true, //开启最大化最小化按钮
-            area: ['700px', '550px'],
+            area: ['700px', '600px'],
             content: 'bookInfoEdit.php?id='+id+"&bookName="+bookName+"&bookWriter="+bookWriter+"&bookClass="+bookClass+"&bookUrl="+bookUrl
         });
 }
