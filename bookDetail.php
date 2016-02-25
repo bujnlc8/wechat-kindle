@@ -62,7 +62,7 @@ $fileType= $strArr[4];
 if(!strstr($url,'pan')){
 if($fileType=='mobi' ||$fileType=='azw'){
         echo "<div class=\"button_sp_area\"><a onclick=send2Kindle('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">推送至kindle</a></div>";
-		echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
+		//echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }else{
      echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }
@@ -163,7 +163,6 @@ if($fileType=='mobi' ||$fileType=='azw'){
     <div class="weui_mask_transparent"></div>
     <div class="weui_toast">
         <div class="weui_loading">
-             :)
             <div class="weui_loading_leaf weui_loading_leaf_0"></div>
             <div class="weui_loading_leaf weui_loading_leaf_1"></div>
             <div class="weui_loading_leaf weui_loading_leaf_2"></div>

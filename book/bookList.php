@@ -79,10 +79,10 @@ $yema = $_REQUEST['yema'];
 					<?php if($bookClass=="7"){echo "selected='selected'";}?>>历史地理</option>
 			</select>
 			</div>
-            <div class="input-field col s2">  
-             <a  style="width:100%;" class="waves-effect waves-light btn" id="query" title="点击查询">Q</a></div>
-             <div class="input-field col s2">  
-		    <a style="width:100%;" class="waves-effect waves-light btn" id="reset" title="点击重置查询条件">R</a></div>
+            <div class="input-field col s3">  
+             <a  style="width:100%;" class="waves-effect waves-light btn" id="query" title="点击查询">查询</a></div>
+             <div class="input-field col s3">  
+		    <a style="width:100%;" class="waves-effect waves-light btn" id="reset" title="点击重置查询条件">重置</a></div>
     </div>
 <?php
 $sql = "select bi.book_id,bi.book_name,bi.book_writer,bi.book_url,bi.book_class from bookinfo bi  where 1=1 ";
@@ -108,11 +108,15 @@ $num = mysqli_fetch_row($result2)[0];
 //$arrSize = count($arr);
 if($num>0){
     // echo "<div><input type='button' value='删除'  onclick='deleteBooks();'/>";
-    echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:6%'>序号</th><th width=25%>书名</th><th width=18%>作者</th><th style='width:25%'>链接</th>";
+	if(!isWechat()){
+		echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:12%'>序号</th><th width=25%>书名</th><th width=18%>作者</th>";
 	if(!is_mobile()){
-		echo "<th style='width:30%'>操作</th></tr>";
+		echo "<th style='width:25%'>链接</th><th style='width:28%'>操作</th></tr>";
 	}else{
-		echo "</tr>";
+		echo "<th style='width:30%'>链接</th></tr>";
+	}
+	}else{
+		echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:12%'>序号</th><th width=60% style='text-align:center;'>书名</th><th width=25%>作者</th><th style='display:none;'></th></tr>";
 	}
 }else{
     echo "<div class='table-responsive' style='width:100%;'><table class='bordered highlight'><tr><td align='center'>未查询到书籍！</td></tr>";
@@ -120,9 +124,9 @@ if($num>0){
 $xuhao=0;
 while($book=mysqli_fetch_row($result)) {
     $xuhao++;
-    echo "<tr class='success'><td>$xuhao</td><td class='bookname'>$book[1]</td><td>$book[2]</td>";
     if(!strstr($book[3],'链接')){
 		if(!isWechat()){
+			echo "<tr class='success'><td>$xuhao</td><td class='bookname'>$book[1]</td><td>$book[2]</td>";
 		  if(!is_mobile()){
            echo  "<td style='font-size:0.7em;color:blue;' class='url'><a href='downloadFile.php?url=$book[3]&bookName=$book[1]' >".substr($book[3],48)."</a></td>";
 		  /* $fileSize =remote_filesize($book[3]);
@@ -142,19 +146,30 @@ while($book=mysqli_fetch_row($result)) {
 	         echo  "<td style='font-size:0.7em;color:blue;' class='url'><a href='downloadFile.php?url=$book[3]&bookName=$book[1]' >$book[3]</a></td></tr>";  
 		 }
 		}else{
-		   echo  "<td style='font-size:0.7em;color:blue;' class='url'><a href='../downloadFileForWechat.php?url=$book[3]&bookName=$book[1]&writer=$book[2]' target='_blank'>$book[3]</a></td></tr>";
+		   echo "<tr class='success' onclick=toDetail(this)><td>$xuhao</td><td class='bookname'>$book[1]</td><td>$book[2]</td>";
+		   echo  "<td style='display:none;'>$book[3]</td></tr>";
 		}
     }else{
+		if(!isWechat()){
         $strArr =explode(" ",$book[3]);
         $u =$strArr[1];
+		echo "<tr class='success'><td>$xuhao</td><td class='bookname'>$book[1]</td><td>$book[2]</td>";
         echo  "<td style='font-size:0.7em;color:blue;'><a href='$u' target='_blank'>";echo mb_substr($strArr[1],7,3)."...密码:$strArr[3]</a></td>";
-		echo "<td><a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]','$book[3]')\">更新</a></td></tr>";
+		if(!is_mobile()){
+		  echo "<td><a href=\"javascript:updateBookInfo('$book[0]','$book[1]','$book[2]','$book[4]','$book[3]')\">更新</a></td></tr>";
+		}else{
+			echo "</tr>";
+		}
+		}else{
+		   echo "<tr class='success' onclick=toDetail(this)><td>$xuhao</td><td class='bookname'>$book[1]</td><td>$book[2]</td>";
+		   echo  "<td style='display:none;'>$book[3]</td></tr>";
+		}
     }
    
 }
 echo "</table></div>";
 if (is_int($num / 8)){ $yeshu= $num/8;}else{$yeshu=floor($num/8+1);}
-echo "<div class='row'><div class='input-field col s9'><div>总共 $num 条   $yeshu 页  当前第 $yema 页</div> <a   class=\"waves-effect waves-light btn\" id=\"first\">首页</a>&nbsp;&nbsp;<a   class=\"waves-effect waves-light btn\" id=\"next\">下一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"up\">上一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"last\">最后一页</a></div></div>";?>
+echo "<div class='row'><div class='input-field col s12'><div>总共 $num 条   $yeshu 页  当前第 $yema 页</div> <a   class=\"waves-effect waves-light btn\" id=\"first\">首页</a>&nbsp;&nbsp;<a   class=\"waves-effect waves-light btn\" id=\"next\">下一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"up\">上一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"last\">最后一页</a></div></div>";?>
         <input type="hidden" value="<?php echo $yema;?>" name="yema" id="yema" />
 		<input type="hidden" value="<?php echo $yeshu ;?>" name="zongyeshu" id="zongyeshu" />
 	</form>
@@ -282,5 +297,22 @@ function updateBookInfo(id,bookName,bookWriter,bookClass,bookUrl){
             content: 'bookInfoEdit.php?id='+id+"&bookName="+bookName+"&bookWriter="+bookWriter+"&bookClass="+bookClass+"&bookUrl="+bookUrl
         });
 }
+
+function toDetail(e){
+	    var url = e.childNodes[3].innerText;
+		console.log(url)
+		var writer =e.childNodes[2].innerText;
+		var bookName =e.childNodes[1].innerText;
+		var reg=/链接/
+		var reg2=/密码.*/
+		if(reg.test(url)){
+			var code = reg2.exec(url)
+			var strArr = url.split(" ");
+			alert(code)
+			window.location.href=strArr[1];
+		}else{
+		    window.location.href="../downloadFileForWechat.php?url="+url+"&bookName="+bookName+"&writer="+writer;
+		}
+	}
 </script>
 </html>
