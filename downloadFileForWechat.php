@@ -1,4 +1,5 @@
 <?php
+require_once 'book/bookMottos.php';
 function remote_filesize($url_file){ 
     $headInf = get_headers($url_file,1); 
     return $headInf['Content-Length']; 
@@ -46,7 +47,7 @@ $fileType= $strArr[4];
     </div>-->
     <div class="weui_cell">
         <div class="weui_cell_ft">
-            <p align="left"> <?php echo $url;?></p>
+            <p align="left"> <?php echo getBookMotto();?></p>
         </div>
     </div>
     <div class="weui_cell">
@@ -61,7 +62,7 @@ $fileType= $strArr[4];
 if(!strstr($url,'pan')){
 if($fileType=='mobi' ||$fileType=='azw'){
         echo "<div class=\"button_sp_area\"><a onclick=send2Kindle('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">推送至kindle</a></div>";
-		//echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
+		echo "<div class=\"button_sp_area\" style='display:none;' id='abc'><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }else{
      echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }
@@ -92,7 +93,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
         <div class="weui_mask"></div>
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
-            <div class="weui_dialog_bd">sorry,推送失败,电子书太大！</div>
+            <div class="weui_dialog_bd">sorry,推送失败,电子书太大,你可以尝试发送到邮箱！</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:close6();" class="weui_btn_dialog primary">确定</a>
             </div>
@@ -211,6 +212,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
                 }else if(data=="noEmail"){
 				   $("#dialog5").show(); 
 				}else if(data=="l"){
+					$("#abc").show();
 				   $("#dialog6").show(); 
 				}else if(data=="TooMany"){
 				   $("#dialog7").show(); 

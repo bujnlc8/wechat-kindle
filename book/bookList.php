@@ -109,7 +109,7 @@ $num = mysqli_fetch_row($result2)[0];
 if($num>0){
     // echo "<div><input type='button' value='删除'  onclick='deleteBooks();'/>";
 	if(!isWechat()){
-		echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:12%'>序号</th><th width=25%>书名</th><th width=18%>作者</th>";
+		echo "<div class='table-responsive'><table class='bordered highlight' style=\"table-layout:fixed;width:100%;\"><tr style=\"width:100%\"><th style='width:10%'>序号</th><th width=25%>书名</th><th width=18%>作者</th>";
 	if(!is_mobile()){
 		echo "<th style='width:25%'>链接</th><th style='width:28%'>操作</th></tr>";
 	}else{
