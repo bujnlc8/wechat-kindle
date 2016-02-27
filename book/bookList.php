@@ -7,6 +7,10 @@ require_once '../tool/sendmail.php';
 define("database", "app_haihuiwechat");
 $bookName = $_POST['bookName'];
 $bookClass = $_POST['bookClass'];
+$per = $_POST['per'];
+if(!$per){
+	$per =12;
+}
 $yema = $_REQUEST['yema'];
 ?>
 <html>
@@ -99,8 +103,8 @@ if ($bookClass != "") {
 }
 $sql .=" order by bi.book_name";
 //echo $sql;
-$start =((intval($yema,10))-1) * 10;
-$sql.=" limit ".$start.",10";
+$start =((intval($yema,10))-1) * $per;
+$sql.=" limit ".$start.",$per";
 $result = mysqli_query($con, $sql);
 //$arr = mysqli_fetch_all($result);
 $result2 =mysqli_query($con, $sqlCount);
@@ -168,8 +172,26 @@ while($book=mysqli_fetch_row($result)) {
    
 }
 echo "</table></div>";
-if (is_int($num / 10)){ $yeshu= $num/10;}else{$yeshu=floor($num/10+1);}
-echo "<div class='row'><div class='input-field col s12'><div>总共 $num 条   $yeshu 页  当前第 $yema 页</div> <a   class=\"waves-effect waves-light btn\" id=\"first\">首页</a>&nbsp;&nbsp;<a   class=\"waves-effect waves-light btn\" id=\"next\">下一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"up\">上一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"last\">最后一页</a></div></div>";?>
+if (is_int($num / $per)){ $yeshu= $num/$per;}else{$yeshu=floor($num/$per+1);}
+echo "<div style='width:100%;'><div style='width:55%;display:inline-block;margin-top:0.5em;'>总共 $num 条   $yeshu 页  当前第 $yema 页</div>";
+echo "<div style='width:25%;display:inline-block;margin-left:10%;margin-top:0;height:30px;text-align:center;'><select name='per' style='width:60px; ' onchange='change();'><option value='8'";
+if($per ==8){
+	echo "selected='selected'";
+}
+echo ">8 条/页</option><option value='12' selected='selected'>12 条/页</option><option value='20'";
+if($per ==20){
+	echo "selected='selected'";
+}
+echo ">20 条/页</option><option value='50'";
+if($per ==50){
+	echo "selected='selected'";
+}
+echo ">50 条/页</option><option value='100'";
+if($per ==100){
+	echo "selected='selected'";
+}
+echo ">100条/页</option></select></div></div>";
+echo "<div class='row'><div class='input-field col s12'><a class=\"waves-effect waves-light btn\" id=\"first\">首页</a>&nbsp;&nbsp;<a   class=\"waves-effect waves-light btn\" id=\"next\">下一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"up\">上一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"last\">最后一页</a></div></div>";?>
         <input type="hidden" value="<?php echo $yema;?>" name="yema" id="yema" />
 		<input type="hidden" value="<?php echo $yeshu ;?>" name="zongyeshu" id="zongyeshu" />
 	</form>
@@ -241,6 +263,9 @@ function checkAll(){
 		$(".bookids").prop("checked",false);
 		flag =true;
      }
+}
+function change(){
+	   $("#bookList").attr("action","bookList.php").submit();
 }
 function deleteBook(url,id){
 	$.ajax({
