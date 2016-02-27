@@ -71,7 +71,7 @@ if ($userName != "") {
     $sql .= "  and ui.user_name like '%" . addslashes($userName) . "%' ";
     $sqlCount .= " and ui.user_name like '%" . addslashes($userName) . "%'";
 }
- $sql .= " order by ui.createdate";
+ $sql .= " order by ui.num desc,ui.createdate";
 $start =((intval($yema,10))-1) * 6;
 $sql.=" limit ".$start.",6";
 $result = mysqli_query($con, $sql);

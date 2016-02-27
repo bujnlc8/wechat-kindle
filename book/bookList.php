@@ -268,7 +268,8 @@ function change(){
 	   $("#bookList").attr("action","bookList.php").submit();
 }
 function deleteBook(url,id){
-	$.ajax({
+	if(window.confirm("确定删除选定的书籍？")){
+		$.ajax({
             url:"deleteBook.php",
             type:"post",
             data:{url:url,id:id},
@@ -280,7 +281,8 @@ function deleteBook(url,id){
                    alert("删除失败！");
                 }
             }
-        });
+        });	
+	}
 }
 function sendTokindle(url,bookName){
     $.ajax({

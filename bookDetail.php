@@ -51,7 +51,15 @@ $fileType= $strArr[4];
              if($fileType=="pan"){
 				 echo "百度网盘";
 			 }else{
-				 echo "<b>".trim($fileType)."</b>格式";
+				if($fileType=="epub"){
+				echo "<b>".$fileType."</b>格式<span style='color:#9370DB;font-size:0.6em;'>（建议用多看阅读打开）</span>";
+			   }else if($fileType=="mobi"){
+				echo "<b>".$fileType."</b>格式<span style='color:#9370DB;font-size:0.6em;'>（建议直接推送到kindle设备）</span>";
+			   }else if($fileType=="azw"){
+				echo "<b>".$fileType."</b>格式<span style='color:#9370DB;font-size:0.6em;'>（建议直接推送到kindle设备）</span>";
+			   }else{
+				echo "<b>".$fileType."</b>格式";
+			    }
 			 }
 			 ?></p>
         </div>
@@ -72,14 +80,14 @@ $fileType= $strArr[4];
     </div>-->
     <div class="weui_cell">
         <div class="weui_cell_ft">
-            <p align="left"> <?php if($fileType=="pan"){echo "<a href='".mb_substr($url,3,-7)."'>".mb_substr($url,3)."</a>"; }else{echo getBookMotto();}?></p>
+            <p align="left"> <?php if($fileType=="pan"){echo "<a href='".mb_substr($url,3,-7)."'>".mb_substr($url,3)."</a>"; }else{echo "<span style='color:#6699cc;font-size:0.8em;'>".getBookMotto()."</span>";}?></p>
         </div>
     </div>
  <?php 
 if(!strstr($url,'pan')){
 if($fileType=='mobi' ||$fileType=='azw'){
         echo "<div class=\"button_sp_area\"><a onclick=send2Kindle('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">推送至kindle</a></div>";
-		echo "<div class=\"button_sp_area\" style='display:none;' id='abc'><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
+		echo "<div class=\"button_sp_area\" style='margin-top:0.5em;' id='abc'><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }else{
      echo "<div class=\"button_sp_area\"><a onclick=send2MailUrl('$url','$bookName',this) class=\"weui_btn weui_btn_plain_primary\">发送至邮箱</a></div>";
 }
@@ -231,6 +239,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				}else if(data=="l"){
 				   $("#abc").show();
 				   $("#dialog6").show(); 
+				   $("#loadingToast").hide();
 				}else if(data=="TooMany"){
 				   $("#dialog7").show(); 
 				}else if(data=="noKindle"){
