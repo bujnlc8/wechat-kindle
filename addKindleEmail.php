@@ -1,6 +1,12 @@
 <?php
 require_once 'getUserInfoWechat.php';
 require_once 'tool/connectMysql.php';
+require_once 'tool/isWechat.php';
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
+if(!isWechat()){
+	echo "请在微信中打开！";
+	exit();
+}
 error_reporting(E_ALL^E_NOTICE^E_WARNING);
 if (isset($_GET['code'])){
 $json = getAccesstokenForWeb($_GET['code']);

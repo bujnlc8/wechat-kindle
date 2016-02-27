@@ -99,8 +99,8 @@ if ($bookClass != "") {
 }
 $sql .=" order by bi.book_name";
 //echo $sql;
-$start =((intval($yema,10))-1) * 8;
-$sql.=" limit ".$start.",8";
+$start =((intval($yema,10))-1) * 10;
+$sql.=" limit ".$start.",10";
 $result = mysqli_query($con, $sql);
 //$arr = mysqli_fetch_all($result);
 $result2 =mysqli_query($con, $sqlCount);
@@ -168,7 +168,7 @@ while($book=mysqli_fetch_row($result)) {
    
 }
 echo "</table></div>";
-if (is_int($num / 8)){ $yeshu= $num/8;}else{$yeshu=floor($num/8+1);}
+if (is_int($num / 10)){ $yeshu= $num/10;}else{$yeshu=floor($num/10+1);}
 echo "<div class='row'><div class='input-field col s12'><div>总共 $num 条   $yeshu 页  当前第 $yema 页</div> <a   class=\"waves-effect waves-light btn\" id=\"first\">首页</a>&nbsp;&nbsp;<a   class=\"waves-effect waves-light btn\" id=\"next\">下一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"up\">上一页</a>&nbsp;&nbsp;<a  class=\"waves-effect waves-light btn\" id=\"last\">最后一页</a></div></div>";?>
         <input type="hidden" value="<?php echo $yema;?>" name="yema" id="yema" />
 		<input type="hidden" value="<?php echo $yeshu ;?>" name="zongyeshu" id="zongyeshu" />

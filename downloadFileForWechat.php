@@ -1,5 +1,10 @@
 <?php
 require_once 'book/bookMottos.php';
+require_once 'tool/isWechat.php';
+if(!isWechat()){
+	echo "请在微信中打开！";
+	exit();
+}
 function remote_filesize($url_file){ 
     $headInf = get_headers($url_file,1); 
     return $headInf['Content-Length']; 
@@ -30,6 +35,11 @@ $fileType= $strArr[4];
 	<div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php echo $writer;?></p>
+        </div>
+    </div>
+	<div class="weui_cell">
+        <div class="weui_cell_ft">
+            <p align="left">  <?php echo "<b>".$fileType."</b>格式";?></p>
         </div>
     </div>
 	<!--<div class="weui_cell">

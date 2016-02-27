@@ -65,7 +65,11 @@ LIBXML_NOCDATA);
                     $result = $this->receiveEvent($postObj);
                     break;
                 case "text" :
-                    $result = $this->returnBookurl($postObj,0);
+				    if($postObj->Content=="?"||$postObj->Content=="？"){
+						$result =$this->help($postObj);
+					}else{
+						$result = $this->returnBookurl($postObj,0);
+					}
                     break;
                 case "voice":
                    $result = $this->returnBookurl($postObj,1);
@@ -78,11 +82,16 @@ LIBXML_NOCDATA);
             exit ();
         }
     }
+	private function help($object){
+		$out ="回复作者或书名搜索书籍，也支持语音搜索哦/::D";
+		$result = $this->transmitText($object, $out);
+        return $result;
+	}
     private function receiveEvent($object)
     {
         switch ($object->Event) {
             case "subscribe":
-                $content = "感谢您关注haihuiling的电子书分享微信号!\n回复任意字符查询相关书籍!\n";
+                $content = "感谢您关注haihuiling的电子书分享微信号!\n回复任意字符查询相关书籍!/:rose";
                 break;
             case "unsubscribe":
                 $this->deleteUser($object);
@@ -106,7 +115,7 @@ LIBXML_NOCDATA);
       if($type==0){
        $bookName = $object->Content;
       }else if($type==1){
-       $bookName = mb_substr(($object->Recongnition),0,-1,'utf-8');
+       $bookName = mb_substr($object->Recognition,0,-1,'utf-8');
       }
        $access_token = getAccessToken();
        $json = getInfo($access_token, $object->FromUserName);
