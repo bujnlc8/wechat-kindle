@@ -33,7 +33,7 @@ $yema = $_REQUEST['yema'];
   <script src="../res/materialize/js/materialize.min.js"></script>
   <script src="../res/layer/layer.js"></script>
 </head>
-<body>
+<body bgcolor="#F0F8FF">
 <div width="100%">
  <?php 
  if(is_mobile()){

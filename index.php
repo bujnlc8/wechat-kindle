@@ -84,7 +84,7 @@ h1{
   <link rel="stylesheet" href="res/bootstrap/css/bootstrap.min.css" />
   <script src="res/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body bgcolor="#F0F8FF">
 <div class="flash flash-full flash-error" style="display:none;" id="tip"></div>
   <div style="width:100%;margin:auto;"><h1 style="text-align:center;">Sign in to WKS</h1></div>
   <div style="width:100%;margin:auto;margin-top:1em;" class="auth-form-body">

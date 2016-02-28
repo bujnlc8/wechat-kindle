@@ -27,7 +27,7 @@ $yema =$_REQUEST['yema'];
   <link rel="stylesheet" href="../res/layer/skin/layer.css" />
   <script src="../res/layer/layer.js"></script>
 </head>
-<body>
+<body bgcolor="#F0F8FF">
 <div width="100%">
  <?php 
  if(is_mobile()){

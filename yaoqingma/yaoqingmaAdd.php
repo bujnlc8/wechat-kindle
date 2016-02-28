@@ -13,7 +13,7 @@ require_once '../tool/is_mobile.php';
   <link rel="stylesheet" href="../res/materialize/css/materialize.min.css" />
   <script src="../res/materialize/js/materialize.min.js"></script>
 </head>
-<body>
+<body bgcolor="#F0F8FF">
   <?php 
  if(is_mobile()){
      echo  "<nav><ul id=\"slide-out\" class=\"side-nav\">";
