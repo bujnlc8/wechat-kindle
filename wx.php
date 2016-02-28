@@ -102,7 +102,7 @@ LIBXML_NOCDATA);
  
                 if($content=='haihuilingWeixinBook'){
                      
-                    $content = "这是一个个人电子书分享公众号，里面包含了我这几年收集的所有电子书，大部分为原版,大家可以根据自己的需要免费获取。由于考虑到流量费用问题，当前每位用户每天只能推送20次。另外,下载的书籍严禁商用，如果有任何疑问，请联系微信 haihuilinghuster ,谢谢大家的支持！最后祝大家阅读愉快！";
+                    $content = "这是一个个人电子书分享公众号，里面包含了这几年我收集的所有电子书，大部分为原版,大家可以根据自己的需要免费获取。由于考虑到费用问题，当前每位用户每天只能推送20次。另外,下载的书籍严禁商用，如果有任何疑问，请联系微信 haihuilingHuster ,谢谢大家的支持！最后祝大家阅读愉快！";
  
                 }
                 break;
@@ -143,7 +143,8 @@ LIBXML_NOCDATA);
                         $bookurl = "sorry,未找到您要的书籍！";
                     }else{
                     $bookurl = "总共为您找到" . mysqli_num_rows($result) . "本相关书籍,点击查看"; 
-                    $item_str .= sprintf($itemTpl, $bookurl, $bookurl, "http://haihuiwechat.sinaapp.com/res/img/books.jpg",  "http://haihuiwechat.sinaapp.com/bookListForWechat.php?bookName=".trim($bookName)."&openid=".$openid);
+					$pic =rand(0,4).".png";
+                    $item_str .= sprintf($itemTpl, $bookurl, $bookurl, "http://haihuiwechat.sinaapp.com/res/img/".$pic,  "http://haihuiwechat.sinaapp.com/bookListForWechat.php?bookName=".trim($bookName)."&openid=".$openid);
                     while ($row = mysqli_fetch_array($result)) {
                         if($num%2==0){
                             $item_str .= sprintf($itemTpl, $row['book_name'] . "-" . $row['book_writer'], $row['book_name'], "http://haihuiwechat.sinaapp.com/res/img/book_brown.png", "http://haihuiwechat.sinaapp.com/bookDetail.php?bookurl=".$row['book_url']."&bookName=".$row['book_name']."&openid=".$openid."&writer=".$row['book_writer']);

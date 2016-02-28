@@ -20,7 +20,12 @@ $strArr = explode('.',$url);
 $fileName=$bookName.".".$strArr[4];
 $fileType= $strArr[4];
 }else{
-  $fileType= "pan";  
+	if(strstr($url,'yunpan')){
+		$fileType= "360";  
+	}else if(strstr($url,'baidu')){
+		$fileType= "bd";  
+	}
+  
 }
 ?> 
 <html>
@@ -32,9 +37,9 @@ $fileType= $strArr[4];
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
 </head>
-<body>
+<body bgcolor="#F0F8FF">
 <div class="weui_cells_title">书籍详情</div>
-<div class="weui_cells">
+<div class="weui_cells" style="background:#F0F8FF;">
     <div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php echo $bookName;?></p>
@@ -48,8 +53,10 @@ $fileType= $strArr[4];
 	<div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php
-             if($fileType=="pan"){
+             if($fileType=="bd"){
 				 echo "百度网盘";
+			 }elseif($fileType=="360"){
+				  echo "360云盘";
 			 }else{
 				if($fileType=="epub"){
 				echo "<b>".$fileType."</b>格式<span style='color:#9370DB;font-size:0.6em;'>（建议用多看阅读打开）</span>";
@@ -80,7 +87,9 @@ $fileType= $strArr[4];
     </div>-->
     <div class="weui_cell">
         <div class="weui_cell_ft">
-            <p align="left"> <?php if($fileType=="pan"){echo "<a href='".mb_substr($url,3,-7)."'>".mb_substr($url,3)."</a>"; }else{echo "<span style='color:#6699cc;font-size:0.8em;'>".getBookMotto()."</span>";}?></p>
+            <p align="left"> <?php if($fileType=="bd" ||$fileType=="360" ){
+				$strArr = explode(" ",$url);
+				echo "<a href='".$strArr[1]."'>".mb_substr($url,3)."</a>"; }else{echo "<span style='color:#6699cc;font-size:0.8em;'>".getBookMotto()."</span>";}?></p>
         </div>
     </div>
  <?php 

@@ -24,9 +24,9 @@ $fileType= $strArr[4];
 <script type="text/javascript"
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
-<body>
+<body bgcolor="#F0F8FF">
 <div class="weui_cells_title">书籍详情</div>
-<div class="weui_cells">
+<div class="weui_cells" style="background:#F0F8FF;">
     <div class="weui_cell">
         <div class="weui_cell_ft">
             <p align="left">  <?php echo $bookName;?></p>
