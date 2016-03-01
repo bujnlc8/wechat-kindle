@@ -8,7 +8,8 @@ if(is_mobile()){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <link rel="shortcut icon" href="../res/img/favorite.ico"/>	
 <title>Sign in to WKS</title>
 <style>
 h1{
