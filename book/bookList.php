@@ -19,6 +19,7 @@ $yema = $_REQUEST['yema'];
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="page-Enter" content="revealtrans(duration=3,transition=21)">
 <meta name="viewport" content="width=device-width, initial-scale=1" />  
+<link rel="shortcut icon" href="../res/img/favorite.ico"/>
     <style type="text/css">
         td{font-size:0.8em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
         .bookname{font-size:0.8em;white-space:pre-line;overflow:visible !important;}

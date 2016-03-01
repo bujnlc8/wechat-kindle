@@ -143,7 +143,7 @@ LIBXML_NOCDATA);
                         $bookurl = "sorry,未找到您要的书籍！";
                     }else{
                     $bookurl = "总共为您找到" . mysqli_num_rows($result) . "本相关书籍,点击查看"; 
-					$pic =rand(0,4).".png";
+					$pic =rand(0,15).".png";
                     $item_str .= sprintf($itemTpl, $bookurl, $bookurl, "http://haihuiwechat.sinaapp.com/res/img/".$pic,  "http://haihuiwechat.sinaapp.com/bookListForWechat.php?bookName=".trim($bookName)."&openid=".$openid);
                     while ($row = mysqli_fetch_array($result)) {
                         if($num%2==0){
@@ -156,7 +156,7 @@ LIBXML_NOCDATA);
                             break;
                          }
                       }
-                     $item_str .= sprintf($itemTpl, $bookurl, $bookurl, "http://haihuiwechat.sinaapp.com/res/img/more.png", "http://haihuiwechat.sinaapp.com/bookListForWechat.php?bookName=".trim($bookName)."&openid=".$openid);   
+                     $item_str .= sprintf($itemTpl, $bookurl, $bookurl, "http://haihuiwechat.sinaapp.com/res/img/more1.png", "http://haihuiwechat.sinaapp.com/bookListForWechat.php?bookName=".trim($bookName)."&openid=".$openid);   
                     }
                     //mysqli_free_result($result);
                   }

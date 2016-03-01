@@ -8,7 +8,8 @@ $bookUrl =$_GET['bookUrl'];
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<link rel="shortcut icon" href="../res/img/favorite.ico"/> 
 <script type="text/javascript"
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<style type="text/css">

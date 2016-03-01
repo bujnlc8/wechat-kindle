@@ -11,6 +11,7 @@ $yema = $_REQUEST['yema'];
 <head><title>人员管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />  
+<link rel="shortcut icon" href="../res/img/favorite.ico"/>
      <style type="text/css">
         td{font-size:0.8em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
         .row a{

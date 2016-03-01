@@ -11,7 +11,8 @@ $yema =$_REQUEST['yema'];
 <head>
 <head><title>日志列表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<link rel="shortcut icon" href="../res/img/favorite.ico"/> 
     <style type="text/css">
 	    td{
 		font-size:0.7em;
