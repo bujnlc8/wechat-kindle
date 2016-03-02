@@ -221,16 +221,20 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				   isSend2Kindle =true;
                 }else if(data=="n"){
                    $("#dialog2").show(); 
+				   $("#loadingToast").hide();
                 }else if(data=="noEmail"){
 				   $("#dialog5").show(); 
+				   $("#loadingToast").hide();
 				}else if(data=="l"){
 					$("#abc").show();
 				   $("#dialog6").show(); 
 				   $("#loadingToast").hide();
 				}else if(data=="TooMany"){
 				   $("#dialog7").show(); 
+				   $("#loadingToast").hide();
 				}else if(data=="noKindle"){
 				   $("#dialog8").show(); 
+				   $("#loadingToast").hide();
 				}
             }
         });
@@ -255,9 +259,11 @@ if($fileType=='mobi' ||$fileType=='azw'){
 				  setTimeout(function(){$("#toast").hide();},4000);
 				   isSend2Url =true;
                 }else if(data=="n"){
-                   $("#dialog4").show(); 
+                   $("#dialog4").show();
+                   $("#loadingToast").hide();				   
                 }else if(data=="TooMany"){
 				   $("#dialog7").show(); 
+				   $("#loadingToast").hide();
 				}
             }
         });
