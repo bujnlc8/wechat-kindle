@@ -52,13 +52,13 @@ require_once '../tool/is_mobile.php';
         </div>
  </div>
  <div class="row">
- <input type="radio"  checked="checked" name="bookClass" value="1" id="1"/><label for="1">IT编程</label>&nbsp;
- <input type="radio"  name="bookClass" value="2" id="2"/><label for="2">文学传记</label>&nbsp;
- <input type="radio"  name="bookClass" value="3" id="3"/><label for="3">诗歌散文</label>&nbsp;
- <input type="radio"  name="bookClass" value="4" id="4"/><label for="4">杂志</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <input type="radio"  name="bookClass" value="5" id="5"/><label for="5">经济金融</label>&nbsp;
- <input type="radio"  name="bookClass" value="6" id="6"/><label for="6">哲理读物</label>&nbsp;
- <input type="radio"  name="bookClass" value="7" id="7"/><label for="7">历史地理</label>&nbsp;
+ <div style="width:30%;display: inline-block;"><input type="radio"  checked="checked" name="bookClass" value="1" id="1"/><label for="1">IT编程</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="2" id="2"/><label for="2">文学传记</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="3" id="3"/><label for="3">诗歌散文</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="4" id="4"/><label for="4">杂志</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="5" id="5"/><label for="5">经济金融</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="6" id="6"/><label for="6">哲理读物</label></div>
+ <div style="width:30%;display: inline-block;"><input type="radio"  name="bookClass" value="7" id="7"/><label for="7">历史地理</label></div>
  </div> 
  <div class="row">
         <div class="input-field col s8">

@@ -38,7 +38,12 @@ function sendMailToMe(){
 	mysqli_select_db($con,"app_haihuiwechat");
 	$result = mysqli_query($con,$sql);
 	$size = mysqli_num_rows($result);
-	$out= date('y-m-d',time())."总共为用户发送了 <b> $size </b>本书,如下：<br/>";
+	if($size !=0){
+		$out= date('y-m-d',time())."总共为用户发送了 <b> $size </b>本书,如下：<br/>";
+	}else{
+	    $out= date('y-m-d',time())."未能为用户发送任何书籍";	
+	}
+	
 	while($row = mysqli_fetch_array($result)){
 		$num++;
 		$out.= ($num.".".$row['response'] .";<br/>");
@@ -53,7 +58,11 @@ function sendMailToMe2(){
 	mysqli_select_db($con,"app_haihuiwechat");
 	$result = mysqli_query($con,$sql);
 	$size = mysqli_num_rows($result);
-	$out= date('y-m-d',time())."未能为用户找到 <b> $size </b>本书,如下：<br/>";
+	if($size!=0){
+		$out= date('y-m-d',time())."未能为用户找到 <b> $size </b>本书,如下：<br/>";
+	}else{
+		$out= date('y-m-d',time())."满足了所有用户的请求，太棒啦！";
+	}
 	while($row = mysqli_fetch_array($result)){
 		$num++;
 		$out .= ($num.".".$row['user_name']."于".$row['req_time']."查询<b>".$row['req_word'] ."</b>;<br/>");

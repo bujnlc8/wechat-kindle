@@ -1,6 +1,10 @@
-<?php 
+<?php
+$openid = $_GET['openid'];
+session_start();
+$_SESSION['openid']=$openid;
 require_once 'book/bookMottos.php';
 require_once 'tool/isWechat.php';
+require_once 'jssdk/doJs.php';
 if(!isWechat()){
 	echo "请在微信中打开！";
 	exit();
@@ -9,9 +13,6 @@ function remote_filesize($url_file){
     $headInf = get_headers($url_file,1); 
     return $headInf['Content-Length']; 
 }
-$openid = $_GET['openid'];
-session_start();
-$_SESSION['openid']=$openid;
 $url = $_GET['bookurl'];
 $writer = $_GET['writer'];
 $bookName = str_replace(' ','',$_GET['bookName']);
@@ -157,7 +158,7 @@ if($fileType=='mobi' ||$fileType=='azw'){
         <div class="weui_mask"></div>
         <div class="weui_dialog">
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">推送结果</strong></div>
-            <div class="weui_dialog_bd">您还未添加kindle推送邮箱，请点击微信菜单【个人信息->kindle邮箱】添加！</div>
+            <div class="weui_dialog_bd">您还未添加kindle推送邮箱，请点击微信菜单或回复'添加kindle邮箱'添加！</div>
             <div class="weui_dialog_ft">
                 <a href="javascript:close5();" class="weui_btn_dialog primary">确定</a>
             </div>

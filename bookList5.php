@@ -14,6 +14,7 @@ if(isUserValid($output->openid)){
 session_start();
 $_SESSION['openid'] = $output->openid;
 $openid=$output->openid;
+require_once 'jssdk/doJs.php';
 $con = getMysqlCon();
 $sql ="select kindle,mail,pass from userinfo where user_id='".$openid."' and is_valid='1'";
 mysqli_select_db($con, "app_haihuiwechat");

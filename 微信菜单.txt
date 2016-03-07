@@ -43,6 +43,12 @@
                         "name": "我的信息", 
                         "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx499c2c5b13385e7e&redirect_uri=http%3A%2F%2Fhaihuiwechat.sinaapp.com%2FuserInfo.php&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect", 
                         "sub_button": [ ]
+                    },
+                    {
+                        "type": "view", 
+                        "name": "我要上传", 
+                        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx499c2c5b13385e7e&redirect_uri=http%3A%2F%2Fhaihuiwechat.sinaapp.com%2FbookUpload.php&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect", 
+                        "sub_button": [ ]
                     }
                 ]
             },

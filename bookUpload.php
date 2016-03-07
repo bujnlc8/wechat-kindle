@@ -1,46 +1,43 @@
-<?php 
-require_once '../tool/valid.php';
-require_once '../tool/is_mobile.php';
+<?php
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
+require_once 'getUserInfoWechat.php';
+require_once 'tool/connectMysql.php';
+require_once 'tool/isWechat.php';
+if(!isWechat()){
+  echo "请在微信中打开！";
+  exit();
+}
+if (isset($_GET['code'])){
+$json = getAccesstokenForWeb($_GET['code']);
+$output = getUserInfoForWeb($json);
+if(isUserValid($output->openid)){
+session_start();
+$_SESSION['openid'] = $output->openid;
+}else{
+  echo "you do not have signed up!";
+  exit();
+}
+}else{
+  echo "auth failed!";
+  exit();
+}
+require_once 'jssdk/doJs.php';
 ?>
 <html>
-<head><title>电子书上传</title>
+<head><title>书籍上传</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />  
-<link rel="shortcut icon" href="../res/img/favorite.ico"/>
+<link rel="shortcut icon" href="res/img/favorite.ico"/>
 <script type="text/javascript"
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<style type="text/css">
 </style>
-  <link rel="stylesheet" href="../res/materialize/css/materialize.min.css" />
-  <script src="../res/materialize/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="res/materialize/css/materialize.min.css" />
+  <script src="res/materialize/js/materialize.min.js"></script>
 </head>
 <body bgcolor="#F0F8FF">
- <?php 
- if(is_mobile()){
-      echo  "<nav><ul id=\"slide-out\" class=\"side-nav\">";
-	  echo "<li><a href=\"#\"><img alt=\"维\"  title=\"扫扫关注微信公众号！\" src=\"../res/img/0.jpg\" style=\"border-radius:50px;width:50px;height:50px;\"></a></li>";
-      session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtai.php\">电子书上传</a></li> ";
-      session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtaiBig.php\">电子书上传(大)</a></li> ";
-      echo "<li><a href=\"bookList.php?yema=1\">书籍列表</a></li>";
-      session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../user/userManage.php?yema=1\">人员管理</a></li> ";
-      session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../yaoqingma/yaoqingmaAdd.php\">邀请码</a></li> ";
-      session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../log/logList.php?yema=1\">日志管理</a></li> ";
-	  echo "<li><a href=\"../login/logout.php\">注销</a></li>";
-      echo "</ul>";  
-      echo "<a href=\"#\" data-activates=\"slide-out\" class=\"button-collapse\"><i class=\"mdi-navigation-menu\"></i></a></nav>";
- }else{
-	    echo "<nav><div class=\"nav-wrapper\"><a  href=\"../login/logout.php\" style=\"float:right;margin-right:6%;color:purple;\">注销</a><a href=\"#\" class=\"brand-logo right\"><img alt=\"维\"  title=\"扫扫关注微信公众号！\" src=\"../res/img/0.jpg\" style=\"border-radius:50px;width:55px;height:55px;\"></a><ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">";
-        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtai.php\">电子书上传</a></li> ";
-        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtaiBig.php\">电子书上传(大)</a></li> ";
-        echo "<li><a href=\"bookList.php?yema=1\">书籍列表</a></li>";
-        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../user/userManage.php?yema=1\">人员管理</a></li> ";
-        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../yaoqingma/yaoqingmaAdd.php\">邀请码</a></li> ";
-        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../log/logList.php?yema=1\">日志管理</a></li> ";
-        echo "</ul></div></nav>";
- }	 
- ?>
  <div class="row">
-<form  class="col s12" enctype="multipart/form-data" action="doHoutai.php"  method="post" name="uploadFile" id="uploadFile">
+<form  class="col s12" enctype="multipart/form-data" action="book/doHoutai.php"  method="post" name="uploadFile" id="uploadFile">
  <div class="row">
         <div class="input-field col s8">
         <input type="text" id="bookName" name="bookName"  class="validate" onblur="checkBook();"><label for="bookName">书名</label>
@@ -68,7 +65,7 @@ require_once '../tool/is_mobile.php';
  </div>
  <div class="file-field input-field">
      <div class="btn">
-        <span>拖入书籍</span>
+        <span>点击添加书籍</span>
          <input type="file" id="book" name="book" onchange="tip();">
       </div>
       <div class="file-path-wrapper" style="visibility: hidden">
@@ -84,7 +81,7 @@ require_once '../tool/is_mobile.php';
 function checkBook(){
     var bookName= $("#bookName").val();
     $.ajax({
-	url:"isbookExist.php",
+	url:"book/isbookExist.php",
 	type:"post",
 	data:{bookName:bookName},
 	success:function(data){
@@ -93,8 +90,7 @@ function checkBook(){
 		}
 	}
    });
- }
-        
+ }     
 $(".button-collapse").sideNav();
 $('.collapsible').collapsible();
 $("#sub").click(function(){
@@ -103,7 +99,7 @@ $("#sub").click(function(){
 	}else{
     var bookName= $("#bookName").val();
     $.ajax({
-	url:"isbookExist.php",
+	url:"book/isbookExist.php",
 	type:"post",
 	data:{bookName:bookName},
 	success:function(data){
@@ -116,8 +112,8 @@ $("#sub").click(function(){
 });
 }
 });
-    function tip(){
+function tip(){
         // $('#tip').html('<b>success!</b>');
-    }
+}
 </script>
 </html>

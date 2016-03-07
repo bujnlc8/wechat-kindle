@@ -1,16 +1,16 @@
 <?php
 define("database", "app_haihuiwechat");
+$bookName = $_GET['bookName'];
+$openid = $_GET['openid'];
+session_start();
+$_SESSION['openid']=$openid;
 require_once 'tool/connectMysql.php';
 require_once 'tool/isWechat.php';
+require_once 'jssdk/doJs.php';
 if(!isWechat()){
 	echo "请在微信中打开！";
 	exit();
 }
-$bookName = $_GET['bookName'];
-//$bookName='美国';
-$openid = $_GET['openid'];
-session_start();
-$_SESSION['openid']=$openid;
 if(!$openid){
 	exit();
 }

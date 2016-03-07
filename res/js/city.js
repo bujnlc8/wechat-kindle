@@ -31,7 +31,7 @@ china['内蒙古自治区']=new Array('呼和浩特市','包头市','乌海市',
 china['西藏自治区']=new Array('拉萨市');
 china['宁夏回族自治区']=new Array('银川市','石嘴山市','吴忠市','固原市','中卫市');
 china['新疆维吾尔自治区']=new Array('乌鲁木齐市','克拉玛依市');
-china['香港特别行政区']=new Array('台北市','高雄市','基隆市','台中市','台南市','新竹市','嘉义市');
+china['香港特别行政区']=new Array('香港');
 function chinaChange(province, city) {
 var pv, cv;
 var i, ii;

@@ -1,6 +1,7 @@
 <?php
 require_once 'getUserInfoWechat.php';
 require_once 'tool/connectMysql.php';
+require_once 'jssdk/doJs.php';
 error_reporting(E_ALL^E_NOTICE^E_WARNING);
 if (isset($_GET['code'])){
 $json = getAccesstokenForWeb($_GET['code']);

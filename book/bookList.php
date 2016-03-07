@@ -4,6 +4,9 @@ require_once '../tool/connectMysql.php';
 require_once '../tool/is_mobile.php';
 require_once '../tool/isWechat.php';
 require_once '../tool/sendmail.php';
+if(isWechat()){
+ require_once '../jssdk/doJs.php';
+}
 define("database", "app_haihuiwechat");
 $bookName = $_POST['bookName'];
 $bookClass = $_POST['bookClass'];
@@ -50,14 +53,14 @@ $yema = $_REQUEST['yema'];
 	  echo "</ul>";  
      echo "<a href=\"#\" data-activates=\"slide-out\" class=\"button-collapse\"><i class=\"mdi-navigation-menu\"></i></a></nav>";
  }else{
-	    echo "<nav><div class=\"nav-wrapper\"><a  href=\"../login/logout.php\" style=\"float:right;margin-right:6%;color:purple;\">注销</a><a href=\"#\" class=\"brand-logo right\"><img alt=\"维\"  title=\"扫扫关注微信公众号！\" src=\"../res/img/0.jpg\" style=\"border-radius:50px;width:55px;height:55px;\"></a><ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">";
+	   echo "<nav><div class=\"nav-wrapper\"><a  href=\"../login/logout.php\" style=\"float:right;margin-right:6%;color:purple;\">注销</a><a href=\"#\" class=\"brand-logo right\"><img alt=\"维\"  title=\"扫扫关注微信公众号！\" src=\"../res/img/0.jpg\" style=\"border-radius:50px;width:55px;height:55px;\"></a><ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">";
         session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtai.php\">电子书上传</a></li> ";
-     session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtaiBig.php\">电子书上传(大)</a></li> ";
+        session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"houtaiBig.php\">电子书上传(大)</a></li> ";
         echo "<li><a href=\"bookList.php?yema=1\">书籍列表</a></li>";
         session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../user/userManage.php?yema=1\">人员管理</a></li> ";
         session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../yaoqingma/yaoqingmaAdd.php\">邀请码</a></li> ";
         session_start();if($_SESSION['userLogined']=='admin') echo "<li><a href=\"../log/logList.php?yema=1\">日志管理</a></li> ";
-     echo "</ul></div></nav>";
+        echo "</ul></div></nav>";
  }
 ?> 
 <form id="bookList" method="Post">

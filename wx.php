@@ -117,9 +117,19 @@ LIBXML_NOCDATA);
       }else if($type==1){
        $bookName = mb_substr($object->Recognition,0,-1,'utf-8');
       }
+      if( $bookName=="添加kindle邮箱"){
+        $out ="尊敬的用户,你好！请点击<a href=\"http://haihuiwechat.sinaapp.com/addKindle.php?openid=".$object->FromUserName."\">此处</a>添加kindle邮箱。";
+		$result = $this->transmitText($object, $out);
+        return $result;
+       }
+       if( $bookName=="我要上传"){
+        $out ="尊敬的用户,你好！请点击<a href=\"http://haihuiwechat.sinaapp.com/bookUpload2.php?openid=".$object->FromUserName."\">此处</a>上传书籍。";
+		$result = $this->transmitText($object, $out);
+        return $result;
+       }
        $access_token = getAccessToken();
        $json = getInfo($access_token, $object->FromUserName);
-       $openid = $json->openid;
+       $openid = $object->FromUserName;
        $nickname = $json->nickname;
        $sex =$json->sex;
        $province =$json->province;

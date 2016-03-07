@@ -8,13 +8,10 @@ if(!isWechat()){
 	exit();
 }
 error_reporting(E_ALL^E_NOTICE^E_WARNING);
-if (isset($_GET['code'])){
-$json = getAccesstokenForWeb($_GET['code']);
-$output = getUserInfoForWeb($json);
-if(isUserValid($output->openid)){
+if(isUserValid($_GET['openid'])){
 session_start();
-$_SESSION['openid'] = $output->openid;
-$openid=$output->openid;
+$_SESSION['openid'] = $_GET['openid'];
+$openid=$_GET['openid'];
 require_once 'jssdk/doJs.php';
 $con = getMysqlCon();
 $sql ="select kindle,mail,pass from userinfo where user_id='".$openid."' and is_valid='1'";
@@ -34,10 +31,6 @@ if(mysqli_num_rows($result)==0){
  }else{
    echo "您还未注册！";
    exit();
-}
-}else{
-	echo "授权失败";
-	exit();
 }
 ?> 
 <html>
